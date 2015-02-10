@@ -99,7 +99,7 @@ myapp.controller('myctrl', function ($scope, $http) {
 
       $scope.chartConfig.series.push({
         "name": name,
-        "type": "areaspline",
+        "type": "spline",
         "yAxis": $scope.chartConfig.options.yAxis.length - 1,
         "data": $scope.getAllByProp(name)
       });
