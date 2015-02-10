@@ -4,86 +4,48 @@ var myapp = angular.module('myapp', ["highcharts-ng"]);
 
 myapp.controller('myctrl', function ($scope, $http) {
   //atuservicio-rails:3000/departamento/montevideo.json
-  $http.get('montevideo.json').then(function(res) {
+  // $http.get('montevideo.json').then(function(res) {
+
+  //atuservicio-rails:3000/.json
+  $http.get('providers.json').then(function(res) {
     var data = res.data;
-    $scope.providers = res.data;
+    $scope.providers = res.data['providers'];
 
-    $scope.chartTypes = [
-      {"id": "line", "title": "Line"},
-      {"id": "spline", "title": "Smooth line"},
-      {"id": "area", "title": "Area"},
-      {"id": "areaspline", "title": "Smooth area"},
-      {"id": "column", "title": "Column"},
-      {"id": "bar", "title": "Bar"},
-      {"id": "pie", "title": "Pie"},
-      {"id": "scatter", "title": "Scatter"}
-    ];
+    $scope.states = {};
+    $scope.states.list = res.data['states']
+    $scope.states.selected = $scope.states.list[0];
 
-    $scope.dashStyles = [
-      {"id": "Solid", "title": "Solid"},
-      {"id": "ShortDash", "title": "ShortDash"},
-      {"id": "ShortDot", "title": "ShortDot"},
-      {"id": "ShortDashDot", "title": "ShortDashDot"},
-      {"id": "ShortDashDotDot", "title": "ShortDashDotDot"},
-      {"id": "Dot", "title": "Dot"},
-      {"id": "Dash", "title": "Dash"},
-      {"id": "LongDash", "title": "LongDash"},
-      {"id": "DashDot", "title": "DashDot"},
-      {"id": "LongDashDot", "title": "LongDashDot"},
-      {"id": "LongDashDotDot", "title": "LongDashDotDot"}
-    ];
+    $scope.lookupByState = res.data['lookup_by_state'];
+    $scope.providersByState = function(state_id) {
+      var providers_ids = $scope.lookupByState[$scope.states.selected.id];// || [$scope.default_state];
+      var res = $scope.providers.filter(function(provider) {
+        return providers_ids.indexOf(provider.id) >= 0;
+      });
 
+      return res;
+    };
+    $scope.changeState = function() {
+      console.log($scope.states.selected);
+      return true;
+    }
 
-    // $scope.chartStack = [
-    //   {"id": '', "title": "No"},
-    //   {"id": "normal", "title": "Normal"},
-    //   {"id": "percent", "title": "Percent"}
-    // ];
-
-    // $scope.addPoints = function () {
-    //   var seriesArray = $scope.chartConfig.series;
-    //   var rndIdx = Math.floor(Math.random() * seriesArray.length);
-    //   seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
-    // };
-
-
-//     $scope.removeRandomSeries = function () {
-//       var seriesArray = $scope.chartConfig.series;
-//       var rndIdx = Math.floor(Math.random() * seriesArray.length);
-//       seriesArray.splice(rndIdx, 1)
-//     }
-//
-    // $scope.removeSeries = function (id) {
-    //   var seriesArray = $scope.chartConfig.series;
-    //   seriesArray.splice(id, 1)
-    // }
-
-    // $scope.toggleHighCharts = function () {
-    //   this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
-    // }
-
-    // $scope.replaceAllSeries = function () {
-    //   var data = [
-    //     { name: "first", data: [10] },
-    //     { name: "second", data: [3] },
-    //     { name: "third", data: [13] }
-    //   ];
-    //   $scope.chartConfig.series = data;
-    // };
-    //
-
+    $scope.stateProviders = function(state_id) {
+      return $scope.providersByState(state_id);
+    }
     $scope.fields = Object.keys($scope.providers[0]);
 
-    $scope.providers_names = $scope.providers.map(function(prov) {
-      return prov.nombre_abreviado;
-    });
+    $scope.providers_names = function(state) {
+      return $scope.stateProviders(state.id).map(function(prov) {
+        return prov.nombre_abreviado;
+      });
+    }
 
-    $scope.getAllByProp = function(prop) {
-      return $scope.providers.map(function(prov) { return parseFloat(prov[prop]); });
+    $scope.getAllByProp = function(state_id, prop) {
+      return $scope.stateProviders(state_id).map(function(prov) { return parseFloat(prov[prop]); });
     }
 
     $scope.chartSeries = [
-      { "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }
+      { "name": "afiliados", "data": $scope.getAllByProp($scope.states.selected.id, "afiliados"), "yAxis": 0 }
     ];
 
     $scope.addSeries = function(name) {
@@ -101,7 +63,7 @@ myapp.controller('myctrl', function ($scope, $http) {
         "name": name,
         "type": "spline",
         "yAxis": $scope.chartConfig.options.yAxis.length - 1,
-        "data": $scope.getAllByProp(name)
+        "data": $scope.getAllByProp($scope.states.selected.id, name)
       });
     }
 
@@ -126,7 +88,7 @@ myapp.controller('myctrl', function ($scope, $http) {
             text: 'Comparador'
         },
         xAxis: {
-          categories: $scope.providers_names,
+          categories: $scope.providers_names($scope.states.selected.id),
           labels: {
             rotation: 45
           },

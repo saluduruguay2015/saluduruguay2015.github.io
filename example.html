@@ -1,10 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.9.5/select.css'>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.8/angular&#45;sanitize.js'></script> -->
     <script src="http://code.highcharts.com/stock/highstock.src.js"></script>
     <script src="highcharts-ng.js"></script>
     <script src="app.js"></script>
@@ -15,14 +18,22 @@
 <div ng-app="myapp">
   <div ng-controller="myctrl">
     <div class="row-fluid">
+      <select ng-model="states.selected"
+        ng-options="name as state.name for state in states.list">
+        <!-- ng&#45;change="changeState()"> -->
+      </select>
+    </div>
+    <div class="row-fluid">
       <div class="col-md-12">
-        <highchart id="chart1" config="chartConfig" style="height: 600px"></highchart>
+        <highchart id="chart1" config="chartConfig" style="height: 600px" ng-model='selectedState'></highchart>
       </div>
     </div>
-    <div class="row">
-      <span ng-repeat="field in fields">
-        <a href="" ng-click="addSeries(field)">{{field}}</a> -
-      </span>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <span ng-repeat="field in fields">
+          <a href="" ng-click="addSeries(field)">{{field}}</a> -
+        </span>
+      </div>
     </div>
   </div>
 </div>
