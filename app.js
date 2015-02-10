@@ -46,15 +46,6 @@ myapp.controller('myctrl', function ($scope, $http) {
     //   seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
     // };
 
-    // $scope.addSeries = function () {
-    //   var rnd = []
-    //   for (var i = 0; i < 10; i++) {
-    //     rnd.push(Math.floor(Math.random() * 20) + 1)
-    //   }
-    //   $scope.chartConfig.series.push({
-    //     data: rnd
-    //   })
-    // }
 
 //     $scope.removeRandomSeries = function () {
 //       var seriesArray = $scope.chartConfig.series;
@@ -92,19 +83,24 @@ myapp.controller('myctrl', function ($scope, $http) {
     }
 
     $scope.chartSeries = [
-      { "name": "afiliados", "data": $scope.getAllByProp("afiliados") }
+      { "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }
     ];
 
     $scope.addSeries = function(name) {
-      $scope.chartConfig.yAxis.push({
+      $scope.chartConfig.options.yAxis.push({
+        title: {
+          text: name
+        },
         labels: {
-          format: '{value} %',
-          title: name
-        }
+          format: '{value} %'
+        },
+        gridLineWidth: 0
       });
 
       $scope.chartConfig.series.push({
         "name": name,
+        "type": "areaspline",
+        "yAxis": $scope.chartConfig.options.yAxis.length - 1,
         "data": $scope.getAllByProp(name)
       });
     }
@@ -112,9 +108,18 @@ myapp.controller('myctrl', function ($scope, $http) {
    $scope.chartConfig = {
         options: {
             chart: {
-                type: 'areaspline',
-                zoomType: 'xy'
-            }
+              zoomType: 'xy'
+            },
+            tooltip: {
+              shared: true
+            },
+
+            yAxis: [{
+              title: {
+                text: 'afiliados'
+              },
+              opposite: true
+            }]
         },
         series: $scope.chartSeries,
         title: {
@@ -124,12 +129,8 @@ myapp.controller('myctrl', function ($scope, $http) {
           categories: $scope.providers_names,
           labels: {
             rotation: 45
-          }
+          },
         },
-        yAxis: [{
-          title: 'afiliados',
-          opposite: true
-        }],
         loading: false
     }
 
