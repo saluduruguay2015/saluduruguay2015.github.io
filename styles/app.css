@@ -1,3 +1,49 @@
+body {
+  background: #2a2a2b;
+}
+
+h1 {
+  color: #7E3548;
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 450%;
+  text-align: center;
+  padding: 10px 0 30px 0;
+}
+
+h2 {
+  color: #7E3548;
+}
+
+h2 a {
+  color: #BC96C0;
+}
+
+/* buttons */
+.btn-danger {
+  background-color: #2b908f;
+}
+
+.btn {
+  background-color: #3F7CAC;
+}
+
+.btn-afiliados{
+  background-color: rgb(30,90,48);
+}
+
+.btn-success {
+  background-color: #f45b5b;
+}
+
+
+.btn-warning {
+  background-color: #f45b5b;
+}
+
+.btn-primary {
+  background-color: #7E3548;
+}
+
 ul#select_state {
   list-style-type: none;
   padding: 0;
@@ -9,3 +55,5 @@ ul#select_state li {
   padding-left: 10px;
   padding-bottom: 10px;
 }
+
+
