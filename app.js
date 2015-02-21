@@ -178,10 +178,35 @@ angular
     };
 
     $scope.pushDataSeries("tiempo_espera_medicina_general", "Espera Med. General", "column", "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_cirugia_general", "Espera Cirugía", "column", "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_pediatria", "Espera Pediatría", "column", "tiempos_espera");
     $scope.pushDataSeries("tiempo_espera_ginecotocologia", "Espera Ginecólogo", "column", "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_medico_referencia", "Espera Med. Cabecera", "column", "tiempos_espera");
   };
 
   $scope.addRightsSeries = function() {
+    $scope.chartConfig.options.yAxis.push({
+      title: {
+        text: "Tiempos de Espera"
+      },
+      labels: {
+        format: '{value} %'
+      },
+      gridLineWidth: 0
+    });
+
+    // $scope.chartConfig.options.plotOptions = {
+    //   column: {
+    //     stacking: 'normal'
+    //   }
+    // };
+
+    $scope.pushDataSeries("informacion_sobre_derechos_2014", "Información sobre derechos", "column", "derechos");
+    $scope.pushDataSeries("queja_sugerencia_sabe_donde_dirigirse_2014", "Recepción de quejas", "column", "derechos");
+    $scope.pushDataSeries("satisfaccion_primer_nivel_atencion_2014", "Satisfacción", "column", "derechos");
+    $scope.pushDataSeries("disponibilidad_medicamentos_farmacia_2014", "Disponibilidad de medicamentos", "column", "derechos");
+    $scope.pushDataSeries("facilidad_para_realizar_tramites_gestiones_2014", "Facilidad de trámites", "column", "derechos");
+    $scope.pushDataSeries("conformidad_disponibilidad_agenda_2014", "Hay horas?", "column", "derechos");
   };
 
   $scope.addPriceSeries = function() {
