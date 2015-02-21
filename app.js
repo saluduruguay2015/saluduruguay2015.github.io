@@ -9,7 +9,7 @@ angular
 
 .controller('StateController', function ($scope, $http, $routeParams) {
   $scope.chosenState = $routeParams.path;
-  var jsonFile = $scope.chosenState.toString() + '.json';
+  var jsonFile = "data/" + $scope.chosenState.toString() + '.json';
   $http.get(jsonFile).then(function(res) {
     var data = res.data;
     $scope.providers = data.providers;
