@@ -1,0 +1,3 @@
+- [ ] Reset graphs
+- [ ] Preset options
+- [ ] Select state
