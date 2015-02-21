@@ -9,6 +9,7 @@
   <a href="" ng-click="addTimeSeries()">Tiempos de Espera</a>
   <a href="" ng-click="addRightsSeries()">Derechos de Usuarios</a>
   <a href="" ng-click="addPriceSeries()">Tickets y Ordenes</a>
+  <a href="" ng-click="addResourcesSeries()">Recursos Humanos</a>
 </div>
 
 <div class="row">

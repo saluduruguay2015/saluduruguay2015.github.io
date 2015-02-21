@@ -211,6 +211,34 @@ angular
 
   $scope.addPriceSeries = function() {
   };
+
+  $scope.addObjectivesSeries = function() {
+  };
+
+  $scope.addResourcesSeries = function() {
+    $scope.chartConfig.options.yAxis.push({
+      title: {
+        text: "Recursos Humanos c/10.000 usuarios"
+      },
+      labels: {
+        format: '{value} cargos'
+      },
+      gridLineWidth: 0
+    });
+
+    $scope.chartConfig.options.plotOptions = {
+      column: {
+        stacking: 'normal'
+      }
+    };
+
+    $scope.pushDataSeries("medicos_generales_policlinica", "Med. Generales", "column", "rrhh");
+    $scope.pushDataSeries("medicos_de_familia_policlinica", "Médicos de Familia", "column", "rrhh");
+    $scope.pushDataSeries("medicos_pediatras_policlinica", "Pediatras", "column", "rrhh");
+    $scope.pushDataSeries("medicos_ginecologos_policlinica", "Ginecólogos", "column", "rrhh");
+    $scope.pushDataSeries("auxiliares_enfermeria_policlinica", "Enfermeros", "column", "rrhh");
+    $scope.pushDataSeries("licenciadas_enfermeria_policlinica", "Lic. en Enfermería", "column", "rrhh");
+  };
 })
 
 .config(['$routeProvider', function($routeProvider) {
