@@ -18,31 +18,6 @@ angular
       return element.path === $scope.chosenState;
     })[0];
 
-    $scope.chartTypes = [
-      {"id": "line", "title": "Line"},
-      {"id": "spline", "title": "Smooth line"},
-      {"id": "area", "title": "Area"},
-      {"id": "areaspline", "title": "Smooth area"},
-      {"id": "column", "title": "Column"},
-      {"id": "bar", "title": "Bar"},
-      {"id": "pie", "title": "Pie"},
-      {"id": "scatter", "title": "Scatter"}
-    ];
-
-    // $scope.dashStyles = [
-    //   {"id": "Solid", "title": "Solid"},
-    //   {"id": "ShortDash", "title": "ShortDash"},
-    //   {"id": "ShortDot", "title": "ShortDot"},
-    //   {"id": "ShortDashDot", "title": "ShortDashDot"},
-    //   {"id": "ShortDashDotDot", "title": "ShortDashDotDot"},
-    //   {"id": "Dot", "title": "Dot"},
-    //   {"id": "Dash", "title": "Dash"},
-    //   {"id": "LongDash", "title": "LongDash"},
-    //   {"id": "DashDot", "title": "DashDot"},
-    //   {"id": "LongDashDot", "title": "LongDashDot"},
-    //   {"id": "LongDashDotDot", "title": "LongDashDotDot"}
-    // ];
-
     $scope.fields = Object.keys($scope.providers[0]);
 
     $scope.providers_names = $scope.providers.map(function(prov) {
@@ -136,10 +111,6 @@ angular
         loading: false
     };
     $scope.addPeopleSeries();
-
-    $scope.reflow = function () {
-      $scope.$broadcast('highchartsng.reflow');
-    };
   });
 })
 
