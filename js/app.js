@@ -135,7 +135,7 @@ angular
         },
         loading: false
     };
-    // $scope.addPeopleSeries();
+    $scope.addPeopleSeries();
 
     $scope.reflow = function () {
       $scope.$broadcast('highchartsng.reflow');
