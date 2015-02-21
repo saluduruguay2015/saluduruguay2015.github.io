@@ -89,7 +89,7 @@ angular
     };
 
     $scope.addSeries = function(name, chartType) {
-      if (typeof(chartType) === 'undefined') chartType = "spline";
+      if (typeof(chartType) === 'undefined') chartType = "areaspline";
 
       $scope.chartConfig.options.yAxis.push({
         title: {
