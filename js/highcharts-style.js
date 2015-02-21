@@ -28,9 +28,9 @@ Highcharts.theme = {
    },
    title: {
       style: {
-         color: '#E0E0E3',
+         color: '#EFECCA',
          textTransform: 'uppercase',
-         fontSize: '2em',
+         fontSize: '4em',
          fontFamily: 'Yanone Kaffeesatz, sans-serif'
       }
    },   subtitle: {

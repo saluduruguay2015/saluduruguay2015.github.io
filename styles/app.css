@@ -1,52 +1,69 @@
 body {
-  background: #2a2a2b;
+  background: #3E3E40;
 }
 
 h1 {
-  color: #7E3548;
+  color: #F41146;
   font-family: 'Yanone Kaffeesatz';
-  font-size: 450%;
+  font-size: 600%;
   text-align: center;
   padding: 10px 0 30px 0;
 }
 
 h2 {
-  color: #7E3548;
+  color: #EFECCA;
+  margin-bottom: 1em;
 }
 
-h2 a {
-  color: #BC96C0;
+.buttons {
+  float: left;
 }
+
+.buttons label.btn-lg {
+  margin: 0.4em 0.3em;
+  font-size: 1.5em;
+  background: #8FBB99;
+  border: 0;
+  color: #363635;
+}
+
+#chart1 {
+  margin-top: 0.8em;
+}
+
+/* h2 a { */
+/*   color: #BC96C0; */
+/* } */
 
 /* buttons */
-.btn-danger {
-  background-color: #2b908f;
-}
-
-.btn {
-  background: #3F7CAC;
-  border: none;
-  text-shadow: none;
-}
-
-.btn-afiliados{
-  background: rgb(242, 45, 58);
-}
-
-.btn-success {
-  background: rgb(242, 45, 58);
-}
-
-
-.btn-warning {
-  background: rgb(60, 181, 176);
-  /* background-color: #f45b5b; */
-}
-
-.btn-primary {
-  background: rgb(252,166,75);
-  /* background-color: #7E3548; */
-}
+/* .btn-danger { */
+/*   background-color: #2b908f; */
+/* } */
+/*  */
+/* .btn { */
+/*   background: #3F7CAC; */
+/*   border: none; */
+/*   text-shadow: none; */
+/* } */
+/*  */
+/* .btn-afiliados{ */
+/*   background: rgb(242, 45, 58); */
+/* } */
+/*  */
+/* .btn-success { */
+/*   background: rgb(242, 45, 58); */
+/* } */
+/*  */
+/*  */
+/* .btn-warning { */
+/*   background: rgb(60, 181, 176); */
+/*   /* background-color: #f45b5b; */ */
+/* } */
+/*  */
+/* .btn-primary { */
+/*   background: rgb(252,166,75); */
+/*   /* background-color: #7E3548; */ */
+/* } */
 
 ul#select_state {
   list-style-type: none;
@@ -56,8 +73,14 @@ ul#select_state {
 
 ul#select_state li {
   float: left;
-  padding-left: 10px;
-  padding-bottom: 10px;
+  padding-left: 1.5em;
+  padding-bottom: 1.8em;
+}
+
+#select_state a, #select_state a:visited {
+  color: #81E979;
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 300%;
 }
 
 
