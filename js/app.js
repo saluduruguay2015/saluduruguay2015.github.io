@@ -155,13 +155,12 @@ angular
     });
 
     $scope.chartConfig.options.plotOptions = {
-      areaspline: {
-        stacking: 'normal',
-        fillOpacity: 0.6
+      column: {
+        stacking: null
       }
     };
 
-    var chartType = "areaspline"
+    var chartType = "column"
     $scope.pushDataSeries("informacion_sobre_derechos_2014", "Información sobre derechos", chartType, "derechos");
     $scope.pushDataSeries("queja_sugerencia_sabe_donde_dirigirse_2014", "Recepción de quejas", chartType, "derechos");
     $scope.pushDataSeries("satisfaccion_primer_nivel_atencion_2014", "Satisfacción", chartType, "derechos");
