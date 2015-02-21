@@ -153,6 +153,7 @@ angular
       labels: {
         format: '{value} %'
       },
+      max: 100
     });
 
     $scope.chartConfig.options.plotOptions = {

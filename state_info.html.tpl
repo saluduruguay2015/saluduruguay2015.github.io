@@ -7,11 +7,11 @@
       <div class="buttons">
         <label class="btn btn-default btn-lg" ng-model="special" btn-radio="afiliados" ng-click="addPeopleSeries()">Afiliados</label>
         <label class="btn btn-default btn-lg" ng-model="special" btn-radio="tiempos_espera" ng-click="addTimeSeries()">Tiempos de Espera</label>
-        <label class="btn btn-default btn-lg" ng-model="special" btn-radio="derechos" ng-click="addObjectivesSeries()">Metas</label>
+        <!-- <label class="btn btn&#45;default btn&#45;lg" ng&#45;model="special" btn&#45;radio="derechos" ng&#45;click="addObjectivesSeries()">Metas</label> -->
       </div>
       <div class="buttons">
         <label class="btn btn-default btn-lg" ng-model="special" btn-radio="derechos" ng-click="addResourcesSeries()">Recursos Humanos</label>
-        <label class="btn btn-default btn-lg" ng-model="special" btn-radio="derechos" ng-click="addPriceSeries()">Precios</label>
+        <!-- <label class="btn btn&#45;default btn&#45;lg" ng&#45;model="special" btn&#45;radio="derechos" ng&#45;click="addPriceSeries()">Precios</label> -->
         <label class="btn btn-default btn-lg" ng-model="special" btn-radio="derechos" ng-click="addRightsSeries()">Derechos</label>
       </div>
     </div>
