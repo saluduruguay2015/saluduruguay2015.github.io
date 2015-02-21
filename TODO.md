@@ -4,3 +4,4 @@
   [ ] Only one group at the same time
 - [ ] Enough data for time stats? Also null values should be differentiated
 - [ ] Reset graphs
+- [ ] Refactor JS!

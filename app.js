@@ -14,6 +14,9 @@ angular
     var data = res.data;
     $scope.providers = data.providers;
     $scope.states = data.states;
+    $scope.state = $scope.states.filter(function(element) {
+      return element.path === $scope.chosenState;
+    })[0];
 
     $scope.chartTypes = [
       {"id": "line", "title": "Line"},
@@ -26,58 +29,19 @@ angular
       {"id": "scatter", "title": "Scatter"}
     ];
 
-    $scope.dashStyles = [
-      {"id": "Solid", "title": "Solid"},
-      {"id": "ShortDash", "title": "ShortDash"},
-      {"id": "ShortDot", "title": "ShortDot"},
-      {"id": "ShortDashDot", "title": "ShortDashDot"},
-      {"id": "ShortDashDotDot", "title": "ShortDashDotDot"},
-      {"id": "Dot", "title": "Dot"},
-      {"id": "Dash", "title": "Dash"},
-      {"id": "LongDash", "title": "LongDash"},
-      {"id": "DashDot", "title": "DashDot"},
-      {"id": "LongDashDot", "title": "LongDashDot"},
-      {"id": "LongDashDotDot", "title": "LongDashDotDot"}
-    ];
-
-
-    // $scope.chartStack = [
-    //   {"id": '', "title": "No"},
-    //   {"id": "normal", "title": "Normal"},
-    //   {"id": "percent", "title": "Percent"}
+    // $scope.dashStyles = [
+    //   {"id": "Solid", "title": "Solid"},
+    //   {"id": "ShortDash", "title": "ShortDash"},
+    //   {"id": "ShortDot", "title": "ShortDot"},
+    //   {"id": "ShortDashDot", "title": "ShortDashDot"},
+    //   {"id": "ShortDashDotDot", "title": "ShortDashDotDot"},
+    //   {"id": "Dot", "title": "Dot"},
+    //   {"id": "Dash", "title": "Dash"},
+    //   {"id": "LongDash", "title": "LongDash"},
+    //   {"id": "DashDot", "title": "DashDot"},
+    //   {"id": "LongDashDot", "title": "LongDashDot"},
+    //   {"id": "LongDashDotDot", "title": "LongDashDotDot"}
     // ];
-
-    // $scope.addPoints = function () {
-    //   var seriesArray = $scope.chartConfig.series;
-    //   var rndIdx = Math.floor(Math.random() * seriesArray.length);
-    //   seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
-    // };
-
-
-//     $scope.removeRandomSeries = function () {
-//       var seriesArray = $scope.chartConfig.series;
-//       var rndIdx = Math.floor(Math.random() * seriesArray.length);
-//       seriesArray.splice(rndIdx, 1)
-//     }
-//
-    // $scope.removeSeries = function (id) {
-    //   var seriesArray = $scope.chartConfig.series;
-    //   seriesArray.splice(id, 1)
-    // }
-
-    // $scope.toggleHighCharts = function () {
-    //   this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
-    // }
-
-    // $scope.replaceAllSeries = function () {
-    //   var data = [
-    //     { name: "first", data: [10] },
-    //     { name: "second", data: [3] },
-    //     { name: "third", data: [13] }
-    //   ];
-    //   $scope.chartConfig.series = data;
-    // };
-    //
 
     $scope.fields = Object.keys($scope.providers[0]);
 
@@ -89,9 +53,25 @@ angular
       return $scope.providers.map(function(prov) { return parseFloat(prov[prop]); });
     }
 
-    $scope.chartSeries = [
-      { "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }
-    ];
+    // have a function for afiliados
+    // $scope.chartSeries = [{ "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }];
+
+    // TODO: refactor to optimize
+    $scope.removeAllSeries = function() {
+      $scope.chartConfig.options.yAxis = [];
+      $scope.chartConfig.series = [];
+      $scope.addPeopleSeries();
+    };
+
+    $scope.removeSeries = function (title) {
+      var seriesArray = $scope.chartConfig.series;
+      var id = seriesArray.every(function(element, index, array) {
+        if (element.title === title) {
+          return id;
+        };
+      });
+      seriesArray.splice(id, 1);
+    }
 
     $scope.pushDataSeries = function(name, title, chartType, stackName) {
       var serie = {
@@ -117,12 +97,22 @@ angular
         },
         labels: {
           format: '{value} %'
-        },
-        gridLineWidth: 0
+        }
       });
 
       $scope.pushDataSeries(name, name, chartType);
-    }
+    };
+
+  $scope.addPeopleSeries = function() {
+    $scope.chartConfig.options.yAxis.push({
+      title: {
+        text: "Afiliados"
+      },
+      opposite: true
+    });
+
+    $scope.pushDataSeries("afiliados", "Cantidad de afiliados", "spline");
+  };
 
    $scope.chartConfig = {
         options: {
@@ -132,17 +122,11 @@ angular
             tooltip: {
               shared: true
             },
-
-            yAxis: [{
-              title: {
-                text: 'afiliados'
-              },
-              opposite: true
-            }]
+            yAxis: []
         },
-        series: $scope.chartSeries,
+        series: [], //$scope.chartSeries,
         title: {
-            text: 'Comparador'
+            text: 'Comparación para ' + $scope.state.name
         },
         xAxis: {
           categories: $scope.providers_names,
@@ -151,7 +135,8 @@ angular
           },
         },
         loading: false
-    }
+    };
+    $scope.addPeopleSeries();
 
     $scope.reflow = function () {
       $scope.$broadcast('highchartsng.reflow');
@@ -160,7 +145,9 @@ angular
 })
 
 .controller('SpecialSeriesController', function($scope) {
+
   $scope.addTimeSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
       title: {
         text: "Tiempos de Espera"
@@ -168,7 +155,6 @@ angular
       labels: {
         format: '{value} días'
       },
-      gridLineWidth: 0
     });
 
     $scope.chartConfig.options.plotOptions = {
@@ -185,6 +171,7 @@ angular
   };
 
   $scope.addRightsSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
       title: {
         text: "Tiempos de Espera"
@@ -192,7 +179,6 @@ angular
       labels: {
         format: '{value} %'
       },
-      gridLineWidth: 0
     });
 
     // $scope.chartConfig.options.plotOptions = {
@@ -216,6 +202,7 @@ angular
   };
 
   $scope.addResourcesSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
       title: {
         text: "Recursos Humanos c/10.000 usuarios"
@@ -223,7 +210,6 @@ angular
       labels: {
         format: '{value} cargos'
       },
-      gridLineWidth: 0
     });
 
     $scope.chartConfig.options.plotOptions = {
@@ -249,4 +235,3 @@ angular
     })
     .otherwise('/departamento/montevideo');
 }])
-  
