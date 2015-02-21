@@ -8,11 +8,12 @@ angular
 ])
 
 .controller('StateController', function ($scope, $http, $routeParams) {
-  $scope.chosenState = $routeParams.state;
+  $scope.chosenState = $routeParams.path;
   var jsonFile = $scope.chosenState.toString() + '.json';
   $http.get(jsonFile).then(function(res) {
     var data = res.data;
-    $scope.providers = res.data.providers;
+    $scope.providers = data.providers;
+    $scope.states = data.states;
 
     $scope.chartTypes = [
       {"id": "line", "title": "Line"},
@@ -148,7 +149,7 @@ angular
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
-    .when('/departamento/:state', {
+    .when('/departamento/:path', {
       templateUrl: 'state_info.html.tpl',
       controller: 'StateController'
     })
