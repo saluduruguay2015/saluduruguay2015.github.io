@@ -60,7 +60,6 @@ angular
     $scope.removeAllSeries = function() {
       $scope.chartConfig.options.yAxis = [];
       $scope.chartConfig.series = [];
-      $scope.addPeopleSeries();
     };
 
     $scope.removeSeries = function (title) {
@@ -131,12 +130,12 @@ angular
         xAxis: {
           categories: $scope.providers_names,
           labels: {
-            rotation: 45
+            rotation: -90
           },
         },
         loading: false
     };
-    $scope.addPeopleSeries();
+    // $scope.addPeopleSeries();
 
     $scope.reflow = function () {
       $scope.$broadcast('highchartsng.reflow');
@@ -164,11 +163,13 @@ angular
       }
     };
 
-    $scope.pushDataSeries("tiempo_espera_medicina_general", "Espera Med. General", "column", "tiempos_espera");
-    $scope.pushDataSeries("tiempo_espera_cirugia_general", "Espera Cirugía", "column", "tiempos_espera");
-    $scope.pushDataSeries("tiempo_espera_pediatria", "Espera Pediatría", "column", "tiempos_espera");
-    $scope.pushDataSeries("tiempo_espera_ginecotocologia", "Espera Ginecólogo", "column", "tiempos_espera");
-    $scope.pushDataSeries("tiempo_espera_medico_referencia", "Espera Med. Cabecera", "column", "tiempos_espera");
+
+    var chartType = "column"
+    $scope.pushDataSeries("tiempo_espera_medicina_general", "Espera Med. General", chartType, "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_cirugia_general", "Espera Cirugía", chartType, "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_pediatria", "Espera Pediatría", chartType, "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_ginecotocologia", "Espera Ginecólogo", chartType, "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_medico_referencia", "Espera Med. Cabecera", chartType, "tiempos_espera");
   };
 
   $scope.addRightsSeries = function() {
@@ -183,12 +184,17 @@ angular
     });
 
     $scope.chartConfig.options.plotOptions = {
-      area: {
-        stacking: 'normal'
-      }
+      // area: {
+      //   stacking: 'normal'
+      // }
+     bar: {
+            dataLabels: {
+                enabled: true
+            }
+       }
     };
 
-    var chartType = "area"
+    var chartType = "bar"
     $scope.pushDataSeries("informacion_sobre_derechos_2014", "Información sobre derechos", chartType, "derechos");
     $scope.pushDataSeries("queja_sugerencia_sabe_donde_dirigirse_2014", "Recepción de quejas", chartType, "derechos");
     $scope.pushDataSeries("satisfaccion_primer_nivel_atencion_2014", "Satisfacción", chartType, "derechos");

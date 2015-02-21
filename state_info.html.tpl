@@ -4,8 +4,7 @@
   <!-- </div> -->
   <div class="col-md-4">
     <div ng-controller="SpecialSeriesController" class="btn-group">
-      <label class="btn btn-none" ng-model="none" ng-click="removeAllSeries()">Borrar todo</label>
-      <label class="btn btn-afiliados" ng-model="special" btn-radio="afiliados" ng-click="removeAllSeries()">Afiliados</label>
+      <label class="btn btn-afiliados" ng-model="special" btn-radio="afiliados" ng-click="addPeopleSeries()">Afiliados</label>
       <label class="btn btn-success" ng-model="special" btn-radio="tiempos_espera" ng-click="addTimeSeries()">Tiempos de Espera</label>
       <label class="btn btn-warning" ng-model="special" btn-radio="derechos" ng-click="addRightsSeries()">Derechos</label>
       <label class="btn btn-primary" ng-model="special" btn-radio="derechos" ng-click="addResourcesSeries()">Recursos Humanos</label>
