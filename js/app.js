@@ -78,6 +78,7 @@ angular
     };
 
   $scope.addPeopleSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
       title: {
         text: "Afiliados"
@@ -170,9 +171,11 @@ angular
   };
 
   $scope.addPriceSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
   };
 
   $scope.addObjectivesSeries = function() {
+    $scope.removeAllSeries(); //TODO: Refactor to remove this
   };
 
   $scope.addResourcesSeries = function() {
