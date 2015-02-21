@@ -1,3 +1,4 @@
-- [ ] Reset graphs
-- [ ] Preset options
 - [X] Select state
+- [ ] Preset options
+- [ ] Enough data for time? Also null values should be differentiated
+- [ ] Reset graphs

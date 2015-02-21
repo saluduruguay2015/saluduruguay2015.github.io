@@ -93,7 +93,24 @@ angular
       { "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }
     ];
 
-    $scope.addSeries = function(name) {
+    $scope.pushDataSeries = function(name, title, chartType, stackName) {
+      var serie = {
+        "name": title,
+        "type": chartType,
+        "data": $scope.getAllByProp(name),
+        "yAxis": $scope.chartConfig.options.yAxis.length - 1
+      };
+
+      if (stackName !== 'undefined') {
+        serie['stack'] = stackName;
+      };
+
+      $scope.chartConfig.series.push(serie);
+    };
+
+    $scope.addSeries = function(name, chartType) {
+      if (typeof(chartType) === 'undefined') chartType = "spline";
+
       $scope.chartConfig.options.yAxis.push({
         title: {
           text: name
@@ -104,12 +121,7 @@ angular
         gridLineWidth: 0
       });
 
-      $scope.chartConfig.series.push({
-        "name": name,
-        "type": "spline",
-        "yAxis": $scope.chartConfig.options.yAxis.length - 1,
-        "data": $scope.getAllByProp(name)
-      });
+      $scope.pushDataSeries(name, name, chartType);
     }
 
    $scope.chartConfig = {
@@ -145,6 +157,35 @@ angular
       $scope.$broadcast('highchartsng.reflow');
     };
   });
+})
+
+.controller('SpecialSeriesController', function($scope) {
+  $scope.addTimeSeries = function() {
+    $scope.chartConfig.options.yAxis.push({
+      title: {
+        text: "Tiempos de Espera"
+      },
+      labels: {
+        format: '{value} días'
+      },
+      gridLineWidth: 0
+    });
+
+    $scope.chartConfig.options.plotOptions = {
+      column: {
+        stacking: 'normal'
+      }
+    };
+
+    $scope.pushDataSeries("tiempo_espera_medicina_general", "Espera Med. General", "column", "tiempos_espera");
+    $scope.pushDataSeries("tiempo_espera_ginecotocologia", "Espera Ginecólogo", "column", "tiempos_espera");
+  };
+
+  $scope.addRightsSeries = function() {
+  };
+
+  $scope.addPriceSeries = function() {
+  };
 })
 
 .config(['$routeProvider', function($routeProvider) {
