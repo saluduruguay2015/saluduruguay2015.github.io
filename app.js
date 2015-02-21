@@ -1,10 +1,16 @@
 'use strict';
 
-var myapp = angular.module('myapp', ["highcharts-ng"]);
+angular
+.module('myapp', [
+  "ngResource",
+  "ngRoute",
+  "highcharts-ng"
+])
 
-myapp.controller('stateController', function ($scope, $http) {
-  //atuservicio-rails:3000/departamento/montevideo.json
-  $http.get('montevideo.json').then(function(res) {
+.controller('StateController', function ($scope, $http, $routeParams) {
+  $scope.chosenState = $routeParams.state;
+  var jsonFile = $scope.chosenState.toString() + '.json';
+  $http.get(jsonFile).then(function(res) {
     var data = res.data;
     $scope.providers = res.data.providers;
 
@@ -138,4 +144,14 @@ myapp.controller('stateController', function ($scope, $http) {
       $scope.$broadcast('highchartsng.reflow');
     };
   });
-});
+})
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    .when('/departamento/:state', {
+      templateUrl: 'state_info.html.tpl',
+      controller: 'StateController'
+    })
+    .otherwise('/departamento/montevideo');
+}])
+  
