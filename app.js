@@ -2,7 +2,7 @@
 
 var myapp = angular.module('myapp', ["highcharts-ng"]);
 
-myapp.controller('myctrl', function ($scope, $http) {
+myapp.controller('stateController', function ($scope, $http) {
   //atuservicio-rails:3000/departamento/montevideo.json
   $http.get('montevideo.json').then(function(res) {
     var data = res.data;
