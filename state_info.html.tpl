@@ -22,15 +22,16 @@
   </div>
 </div>
 
-<div id="select_state">
+<ul id="select_state">
   <h2>Elegi otro departamento</h2>
-  <div ng-repeat="state in states">
+  <li ng-repeat="state in states">
     <a href="#/departamento/{{state.path}}">{{state.name}}</a>
-  </div>
-</div>
+  </li>
+</ul>
 
-<div class="row">
-  <span ng-repeat="field in fields">
-    <a href="" ng-click="addSeries(field)">{{field}}</a> -
-  </span>
-</div>
+<!-- this actually confuses people! -->
+<!-- <div class="row"> -->
+<!--   <span ng&#45;repeat="field in fields"> -->
+<!--     <a href="" ng&#45;click="addSeries(field)">{{field}}</a> &#45; -->
+<!--   </span> -->
+<!-- </div> -->

@@ -1,0 +1,11 @@
+ul#select_state {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#select_state li {
+  float: left;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
