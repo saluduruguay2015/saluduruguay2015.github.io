@@ -125,7 +125,7 @@ angular
       labels: {
         format: '{value} días'
       },
-      max: 35.0
+      max: 30.0
     });
 
     $scope.chartConfig.options.plotOptions = {

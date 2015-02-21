@@ -61,7 +61,8 @@ Highcharts.theme = {
       gridLineColor: '#707073',
       labels: {
          style: {
-            color: '#E0E0E3'
+            color: '#EFECCA',
+            fontSize: '1em'
          }
       },
       lineColor: '#707073',
@@ -70,7 +71,8 @@ Highcharts.theme = {
       tickWidth: 1,
       title: {
          style: {
-            color: '#A0A0A3'
+            color: '#EFECCA',
+            fontSize: '2em'
          }
       }
    },
