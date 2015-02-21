@@ -2,6 +2,21 @@ body {
   background: #3E3E40;
 }
 
+body > .container {
+  padding-top: 60px;
+}
+
+footer {
+  background-color: #EFECCA;
+  padding: 2.5em;
+}
+
+footer a, footer a:active, footer a:visited {
+  font-size: 110%;
+  font-weight: 700;
+  color: #805491;
+}
+
 h1 {
   color: #F41146;
   font-family: 'Yanone Kaffeesatz';
