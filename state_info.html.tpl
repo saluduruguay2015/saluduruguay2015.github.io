@@ -1,7 +1,7 @@
 <div class="row-fluid">
-  <div class="col-md-4">
-    <h2>Elegi uno o mas criterios para <a ng-href="#select_state">{{state.name}}</a></h2>
-  </div>
+  <!-- <div class="col&#45;md&#45;4"> -->
+  <!--   <h2>Elegi uno o mas criterios para <a ng&#45;href="#select_state">{{state.name}}</a></h2> -->
+  <!-- </div> -->
   <div class="col-md-4">
     <div ng-controller="SpecialSeriesController" class="btn-group">
       <label class="btn btn-none" ng-model="none" ng-click="removeAllSeries()">Borrar todo</label>

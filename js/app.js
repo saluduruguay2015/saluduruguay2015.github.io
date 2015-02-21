@@ -155,6 +155,7 @@ angular
       labels: {
         format: '{value} días'
       },
+      max: 35.0
     });
 
     $scope.chartConfig.options.plotOptions = {
@@ -174,25 +175,26 @@ angular
     $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
       title: {
-        text: "Tiempos de Espera"
+        text: "Derechos"
       },
       labels: {
         format: '{value} %'
       },
     });
 
-    // $scope.chartConfig.options.plotOptions = {
-    //   column: {
-    //     stacking: 'normal'
-    //   }
-    // };
+    $scope.chartConfig.options.plotOptions = {
+      area: {
+        stacking: 'normal'
+      }
+    };
 
-    $scope.pushDataSeries("informacion_sobre_derechos_2014", "Información sobre derechos", "column", "derechos");
-    $scope.pushDataSeries("queja_sugerencia_sabe_donde_dirigirse_2014", "Recepción de quejas", "column", "derechos");
-    $scope.pushDataSeries("satisfaccion_primer_nivel_atencion_2014", "Satisfacción", "column", "derechos");
-    $scope.pushDataSeries("disponibilidad_medicamentos_farmacia_2014", "Disponibilidad de medicamentos", "column", "derechos");
-    $scope.pushDataSeries("facilidad_para_realizar_tramites_gestiones_2014", "Facilidad de trámites", "column", "derechos");
-    $scope.pushDataSeries("conformidad_disponibilidad_agenda_2014", "Hay horas?", "column", "derechos");
+    var chartType = "area"
+    $scope.pushDataSeries("informacion_sobre_derechos_2014", "Información sobre derechos", chartType, "derechos");
+    $scope.pushDataSeries("queja_sugerencia_sabe_donde_dirigirse_2014", "Recepción de quejas", chartType, "derechos");
+    $scope.pushDataSeries("satisfaccion_primer_nivel_atencion_2014", "Satisfacción", chartType, "derechos");
+    $scope.pushDataSeries("disponibilidad_medicamentos_farmacia_2014", "Disponibilidad de medicamentos", chartType, "derechos");
+    $scope.pushDataSeries("facilidad_para_realizar_tramites_gestiones_2014", "Facilidad de trámites", chartType, "derechos");
+    $scope.pushDataSeries("conformidad_disponibilidad_agenda_2014", "Hay horas?", chartType, "derechos");
   };
 
   $scope.addPriceSeries = function() {

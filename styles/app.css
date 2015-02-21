@@ -24,24 +24,28 @@ h2 a {
 }
 
 .btn {
-  background-color: #3F7CAC;
+  background: #3F7CAC;
+  border: none;
+  text-shadow: none;
 }
 
 .btn-afiliados{
-  background-color: rgb(30,90,48);
+  background: rgb(242, 45, 58);
 }
 
 .btn-success {
-  background-color: #f45b5b;
+  background: rgb(242, 45, 58);
 }
 
 
 .btn-warning {
-  background-color: #f45b5b;
+  background: rgb(60, 181, 176);
+  /* background-color: #f45b5b; */
 }
 
 .btn-primary {
-  background-color: #7E3548;
+  background: rgb(252,166,75);
+  /* background-color: #7E3548; */
 }
 
 ul#select_state {

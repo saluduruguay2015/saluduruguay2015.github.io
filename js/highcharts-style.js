@@ -30,7 +30,8 @@ Highcharts.theme = {
       style: {
          color: '#E0E0E3',
          textTransform: 'uppercase',
-         fontSize: '30px'
+         fontSize: '2em',
+         fontFamily: 'Yanone Kaffeesatz, sans-serif'
       }
    },   subtitle: {
       style: {
@@ -42,7 +43,8 @@ Highcharts.theme = {
       gridLineColor: '#707073',
       labels: {
          style: {
-            color: '#E0E0E3'
+            color: '#E0E0E3',
+            fontSize: '1.5em'
          }
       },
       lineColor: '#707073',
