@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="col-md-6">
-    <h2>Elegi un filtro para {{state.name}}:</h2>
+    <h2>Elegí un filtro para {{state.name}}:</h2>
   </div>
   <div class="col-md-6">
     <div ng-controller="SpecialSeriesController">
