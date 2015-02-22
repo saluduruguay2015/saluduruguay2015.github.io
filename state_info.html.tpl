@@ -20,7 +20,7 @@
 
 <div class="row-fluid">
   <div class="col-md-12 chart">
-    <highchart id="chart1" config="chartConfig" style="height: 600px"></highchart>
+    <highchart id="chart1" config="chartConfig"></highchart>
   </div>
 </div>
 <div class="row-fluid">
