@@ -62,21 +62,6 @@ angular
       $scope.chartConfig.series.push(serie);
     };
 
-    $scope.addSeries = function(name, chartType) {
-      if (typeof(chartType) === 'undefined') chartType = "areaspline";
-
-      $scope.chartConfig.options.yAxis.push({
-        title: {
-          text: name
-        },
-        labels: {
-          format: '{value} %'
-        }
-      });
-
-      $scope.pushDataSeries(name, name, chartType);
-    };
-
   $scope.addPeopleSeries = function() {
     $scope.removeAllSeries(); //TODO: Refactor to remove this
     $scope.chartConfig.options.yAxis.push({
@@ -185,12 +170,12 @@ angular
       labels: {
         format: '{value} %'
       },
-      max: 100
+      max: 300
     });
 
     $scope.chartConfig.options.plotOptions = {
       column: {
-        stacking: 'normal'
+        stacking: 'stacked'
       }
     };
 
