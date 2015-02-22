@@ -36,6 +36,11 @@ h2 {
   margin-bottom: 1em;
 }
 
+.chart {
+  clear: both;
+  min-height: 600px;
+}
+
 .buttons {
   float: left;
 }
