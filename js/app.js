@@ -83,10 +83,11 @@ angular
       title: {
         text: "Afiliados"
       },
-      opposite: true
+      opposite: true,
+      min: 0
     });
 
-    $scope.pushDataSeries("afiliados", "Cantidad de afiliados", "spline");
+    $scope.pushDataSeries("afiliados", "Cantidad de afiliados", "column");
   };
 
    $scope.chartConfig = {
@@ -177,6 +178,26 @@ angular
 
   $scope.addObjectivesSeries = function() {
     $scope.removeAllSeries(); //TODO: Refactor to remove this
+    $scope.chartConfig.options.yAxis.push({
+      title: {
+        text: "Metas del MSP"
+      },
+      labels: {
+        format: '{value} %'
+      },
+      max: 100
+    });
+
+    $scope.chartConfig.options.plotOptions = {
+      column: {
+        stacking: 'normal'
+      }
+    };
+
+    var chartType = "column"
+    $scope.pushDataSeries("meta_medico_referencia", "Usuarios con médico de referencia", chartType, "metas");
+    $scope.pushDataSeries("meta_ninos_controlados", "Niños (menores de 1 año) controlados", chartType, "metas");
+    $scope.pushDataSeries("meta_embarazadas", "Embarazadas controladas correctamente", chartType, "metas");
   };
 
   $scope.addResourcesSeries = function() {
