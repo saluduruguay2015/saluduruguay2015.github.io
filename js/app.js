@@ -37,15 +37,16 @@ angular
       $scope.chartConfig.series = [];
     };
 
-    $scope.removeSeries = function (title) {
-      var seriesArray = $scope.chartConfig.series;
-      var id = seriesArray.every(function(element, index, array) {
-        if (element.title === title) {
-          return id;
-        };
-      });
-      seriesArray.splice(id, 1);
-    }
+    // unused code
+    // $scope.removeSeries = function (title) {
+    //   var seriesArray = $scope.chartConfig.series;
+    //   var id = seriesArray.every(function(element, index, array) {
+    //     if (element.title === title) {
+    //       return id;
+    //     };
+    //   });
+    //   seriesArray.splice(id, 1);
+    // }
 
     $scope.pushDataSeries = function(name, title, chartType, stackName) {
       var serie = {
