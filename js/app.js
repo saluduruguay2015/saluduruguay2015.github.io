@@ -28,25 +28,55 @@ angular
       return $scope.providers.map(function(prov) { return parseFloat(prov[prop]); });
     }
 
-    // have a function for afiliados
-    // $scope.chartSeries = [{ "name": "afiliados", "data": $scope.getAllByProp("afiliados"), "yAxis": 0 }];
-
     // TODO: refactor to optimize
     $scope.removeAllSeries = function() {
       $scope.chartConfig.options.yAxis = [];
       $scope.chartConfig.series = [];
     };
 
-    // unused code
-    // $scope.removeSeries = function (title) {
-    //   var seriesArray = $scope.chartConfig.series;
-    //   var id = seriesArray.every(function(element, index, array) {
-    //     if (element.title === title) {
-    //       return id;
-    //     };
-    //   });
-    //   seriesArray.splice(id, 1);
-    // }
+    // Average Waiting Times are different
+    // Some data shouldn't be displayed by default
+    // because it can lead to misinterpretation
+    $scope.pushDataSeries = function(name, title, chartType, stackName) {
+      var serie = {
+        "name": title,
+        "type": chartType,
+        "data": $scope.getAllByProp(name),
+        "yAxis": $scope.chartConfig.options.yAxis.length - 1
+      };
+
+      if (stackName !== 'undefined') {
+        serie['stack'] = stackName;
+      };
+
+      $scope.chartConfig.series.push(serie);
+    };
+
+    $scope.pushEnoughDataForAvg = function(name) {
+      var data = $scope.providers.map(function(prov) {
+        var enoughDataParam = "datos_suficientes_" + name;
+        console.log(prov[enoughDataParam]);
+        if (prov[enoughDataParam] === "true") {
+          return {
+            y: prov[name],
+            marker: {
+              symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
+            }
+          }
+        } else {
+          return parseFloat(prov[name]);
+        }
+      });
+
+      var serie = {
+        "name": "Hay suficientes datos?",
+        "type": "spline",
+        "data": data,
+        "yAxis": $scope.chartConfig.options.yAxis.length - 1
+      };
+
+      $scope.chartConfig.series.push(serie);
+    };
 
     $scope.pushDataSeries = function(name, title, chartType, stackName) {
       var serie = {
@@ -86,7 +116,7 @@ angular
             },
             yAxis: []
         },
-        series: [], //$scope.chartSeries,
+        series: [],
         title: {
             text: 'Comparación para ' + $scope.state.name
         },
@@ -129,6 +159,13 @@ angular
     $scope.pushDataSeries("tiempo_espera_pediatria", "Espera Pediatría", chartType, "tiempos_espera");
     $scope.pushDataSeries("tiempo_espera_ginecotocologia", "Espera Ginecólogo", chartType, "tiempos_espera");
     $scope.pushDataSeries("tiempo_espera_medico_referencia", "Espera Med. Cabecera", chartType, "tiempos_espera");
+
+    // add information about real data
+    $scope.pushEnoughDataForAvg("tiempo_espera_medicina_general");
+    $scope.pushEnoughDataForAvg("tiempo_espera_cirugia_general");
+    $scope.pushEnoughDataForAvg("tiempo_espera_pediatria");
+    $scope.pushEnoughDataForAvg("tiempo_espera_ginecotocologia");
+    $scope.pushEnoughDataForAvg("tiempo_espera_medico_referencia");
   };
 
   $scope.addRightsSeries = function() {
