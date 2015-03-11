@@ -32,10 +32,10 @@ UserVoice.push(['identify', {
 }]);
 
 // Add default trigger to the bottom-right corner of the window:
-UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'top-left' }]);
+UserVoice.push(['addTrigger', { mode: 'smartvote', trigger_position: 'top-left' }]);
 
 // Or, use your own custom trigger:
-//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+//UserVoice.push(['addTrigger', '#id', { mode: 'smartvote' }]);
 
 // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
 UserVoice.push(['autoprompt', {}]);
